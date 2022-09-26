@@ -22,6 +22,7 @@ function spiceMustFlow(n) {
       totalSpices += spices - workerSpice;
       spices -= 10;
     }
+
     totalSpices -= workerSpice;
 
     console.log(days);

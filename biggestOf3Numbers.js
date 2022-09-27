@@ -3,19 +3,19 @@ function biggestOf3Numbers (a, b, c) {
     // const num2 = b;
     // const num3 = c;
 
-    let biggest = 0;
-
     const arrey = [a, b, c];
+    let biggest = Number(arrey[0]);
 
-    for (let i = 0; i < arrey.length; i++) {
-        if (arrey[i] > biggest) biggest = Number(arrey[i]);
+    for (let i = 1; i < arrey.length; i++) {
+
+        if (Number(arrey[i]) > biggest) biggest = Number(arrey[i]);
     }
     
     console.log(biggest);
 }
 
-biggestOf3Numbers( 43,
+biggestOf3Numbers(130,
 
-    43.2,
+    5,
     
-    43.1);
+    99);

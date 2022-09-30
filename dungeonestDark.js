@@ -19,24 +19,26 @@ function dungeonestDark(arr) {
   }
 
   arrayRooms.push(arrayString.slice(lastRoomStart, arrayString.length));
-  
-  console.log(arrayRooms);
-  console.log(lastRoomStart);
-  console.log("-----------");
+
+  //   console.log(arrayRooms);
+  //   console.log(lastRoomStart);
+  //   console.log("-----------");
 
   for (let i = 0; i < arrayRooms.length; i++) {
     let currentElement = arrayRooms[i];
     for (let j = 0; j < currentElement.length; j++) {
       if (currentElement[j] === " ") {
         arrayRoomsArray.push(currentElement.slice(0, j));
-        arrayRoomsArray.push(currentElement.slice(j + 1, currentElement.length));
+        arrayRoomsArray.push(
+          currentElement.slice(j + 1, currentElement.length)
+        );
       }
     }
   }
   arrayRoomsArray.push("END");
 
-  console.log(arrayRoomsArray);
-  console.log("---------");
+  //   console.log(arrayRoomsArray);
+  //   console.log("---------");
 
   let index = 0;
   let counter = 0;
@@ -50,17 +52,24 @@ function dungeonestDark(arr) {
   while (currentRoomContains !== "END") {
     counter++;
     switch (currentRoomContains) {
-      case "potion" : 
-      if (health < initialHealth) health += currentRoomNumber;
-      if (health > 100) health = initialHealth;
-      console.log(`You healed for ${currentRoomNumber} hp.`);
-      console.log(`Current health: ${health} hp.`);
+      case "potion":
+        health += currentRoomNumber;
+        if (health > initialHealth) {
+          console.log(
+            `You healed for ${currentRoomNumber - (health - initialHealth)} hp.`
+          );
+          health = initialHealth;
+          console.log(`Current health: ${health} hp.`);
+        } else {
+          console.log(`You healed for ${currentRoomNumber} hp.`);
+          console.log(`Current health: ${health} hp.`);
+        }
         break;
-      case "chest" :
+      case "chest":
         initialCoins += currentRoomNumber;
-        console.log(`You found ${initialCoins} coins.`);
+        console.log(`You found ${currentRoomNumber} coins.`);
         break;
-        default :
+      default:
         health -= currentRoomNumber;
         if (health > 0) {
           console.log(`You slayed ${currentRoomContains}.`);
@@ -90,3 +99,4 @@ function dungeonestDark(arr) {
 }
 
 dungeonestDark(["rat 10|bat 20|potion 10|rat 10|chest 100|boss 70|chest 1000"]);
+// dungeonestDark(["cat 10|potion 30|orc 10|chest 10|snake 25|chest 110"]);

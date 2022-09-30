@@ -35,6 +35,21 @@ function tseamAccount(arr) {
     return newArray;
   }
 
+  function separatedStringToArray (string, char) {
+    let newArray = [];
+    // for (let i = 0; i < string.length; i++) {
+    //   let currentElement = string[i];
+      for (let j = 0; j < string.length; j++) {
+        if (string[j] === char) {
+          newArray.push(string.slice(0, j));
+          newArray.push(string.slice(j + 1, string.length));
+        }
+      }
+    //}
+    //newArray.push(array[array.length - 1]);
+    return newArray;
+  }
+
   function removeElement(array, value) {
     return array.filter((element) => {
       return element !== value;
@@ -65,9 +80,9 @@ function tseamAccount(arr) {
         }
         break;
       case "Expansion":
-        let exp = separatedToSingleString(game, "-");
+        let exp = separatedStringToArray(game, "-");
         let expGame = exp[0];
-        if ((accountPeterArray, includes(expGame))) {
+        if ((accountPeterArray.includes(expGame))) {
           accountPeterArray.splice(
             accountPeterArray.indexOf(expGame) + 1,
             0,
@@ -80,8 +95,8 @@ function tseamAccount(arr) {
     index++;
   }
 
-  console.log(accountPeterArray);
-  console.log(newArray);
+  console.log(accountPeterArray.join(" "));
+  //console.log(newArray);
 }
 
 tseamAccount([
@@ -97,3 +112,15 @@ tseamAccount([
 
   "Play!",
 ]);
+
+tseamAccount(['CS WoW Diablo',
+
+'Uninstall XCOM',
+
+'Update PeshoGame',
+
+'Update WoW',
+
+'Expansion Civ-V',
+
+'Play!']);

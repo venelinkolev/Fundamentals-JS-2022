@@ -13,6 +13,8 @@ function spiralMatrix (dem1, dem2) {
             arrayMatrix[i][j] = 0;
         }
     }
+
+    while (rowEnd > dem1 / 2 || columnEnd > dem2 / 2) {
     
     for (let i = row; i <= rowEnd; i++) {
         arrayMatrix[row][i] = arrayCounter;
@@ -37,8 +39,16 @@ function spiralMatrix (dem1, dem2) {
         arrayCounter++;
     }    
     column++;
+    }
+
+    // for (let i = row; i <= rowEnd; i++) {
+    //     arrayMatrix[row][i] = arrayCounter;
+    //     arrayCounter++;
+    // }
+
+    
 
     console.log(arrayMatrix);
 }
 
-spiralMatrix(5, 5);
+spiralMatrix(10, 10);

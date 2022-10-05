@@ -14,7 +14,7 @@ function spiralMatrix(dem1, dem2) {
     }
   }
 
-  while (rowEnd > dem1 / 2 || columnEnd > dem2 / 2) {
+  while (row < dem1 / 2 || column < dem2 / 2) {
     for (let i = row; i <= rowEnd; i++) {
       arrayMatrix[row][i] = arrayCounter;
       arrayCounter++;
@@ -46,8 +46,8 @@ function spiralMatrix(dem1, dem2) {
   // }
 
   for (let i = 0; i < arrayMatrix.length; i++) {
-    console.log(arrayMatrix[i]);
+    console.log(arrayMatrix[i].join(" "));
   }
 }
 
-spiralMatrix(10, 10);
+spiralMatrix(3, 3);

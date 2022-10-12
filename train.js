@@ -1,11 +1,10 @@
 function train(arr) {
   let array = arr[0];
+  const maxCapacity = Number(arr[1]);
   array = array.split(" ").map(Number);
 
   arr.shift();
   arr.shift();
-
-  const maxCapacity = arr[1];
 
   for (let i = 0; i < arr.length; i++) {
     let resultArray = [];
@@ -22,12 +21,18 @@ function train(arr) {
         break;
       default:
         for (let j = 0; j < array.length; j++) {
-          if (array[i] + command <= maxCapacity) array[i] += Number(command);
+          command = Number(command);
+          //console.log(command, typeof command);
+          if (array[j] + command <= maxCapacity) {
+            array[j] += command;
+            break;
+          }
         }
+      //console.log(`${i} ${command}`);
     }
   }
-  console.log(array);
-  console.log(arr);
+  console.log(array.join(" "));
+  //console.log(arr);
 }
 
-train(["32 54 21 12 4 0 23", "75", "Add 10", "Add 0", "30", "10", "75"]);
+train(["0 0 0 10 2 4", "10", "Add 10", "10", "10", "10", "8", "6"]);

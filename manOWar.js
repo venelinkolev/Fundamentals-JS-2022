@@ -1,5 +1,5 @@
 function manOWar(arr) {
-  let pitateShip = arr.shift().split(">").map(Number);
+  let pirateShip = arr.shift().split(">").map(Number);
   let warship = arr.shift().split(">").map(Number);
   let maxHealth = Number(arr.shift());
 
@@ -14,21 +14,43 @@ function manOWar(arr) {
 
     switch (currentCommand[0]) {
       case "Fire":
-        let indexFire = currentCommand[1];
+        let indexFire = Number(currentCommand[1]);
         if (indexFire >= 0 && indexFire < warship.length) {
-          warship[indexFire] -= currentCommand[2];
+          warship[indexFire] -= Number(currentCommand[2]);
           if (warship[indexFire] <= 0) {
-            console.log(`"You won! The enemy ship has sunken."`);
+            console.log("You won! The enemy ship has sunken.");
             stop = true;
             break;
           }
         }
         break;
       case "Defend":
+        let startIndex = Number(currentCommand[1]);
+        let endIndex = Number(currentCommand[2]);
+        if ((startIndex >= 0 && startIndex < pirateShip.length) &&
+        (endIndex >= 0 && endIndex < pirateShip.length)) {
+          for (let i = startIndex; i <= endIndex; i++) {
+            pirateShip[i] -= Number(currentCommand[3]);
+            if (pirateShip[i] <= 0) {
+              console.log("You lost! The pirate ship has sunken.");
+              stop = true;
+              break;
+            }
+          }
+        }
         break;
       case "Repair":
+        let repairIndex = Number(currentCommand[1]);
+        let repairHealth = Number(currentCommand[2]);
+        if (repairIndex >= 0 && repairIndex < pirateShip.length) {
+          pirateShip[repairIndex] += repairHealth;
+          if (pirateShip[repairIndex] > maxHealth) pirateShip[repairIndex] = maxHealth;
+        }
         break;
       case "Status":
+        let needRepairValue = maxHealth * 0.2;
+        let needRepairArray = pirateShip.filter(element => element < needRepairValue);
+        console.log(`${needRepairArray.length} sections need repair.`);
         break;
     }
 
@@ -38,7 +60,21 @@ function manOWar(arr) {
     index++;
   }
 
-  console.log(pitateShip, warship, maxHealth, commandArray);
+  let pirateShipSum = 0;
+  let warshipSum = 0;
+
+  for (let i = 0; i < pirateShip.length; i++) {
+    pirateShipSum += pirateShip[i];
+  }
+
+  for (let i = 0; i < warship.length; i++) {
+    warshipSum += warship[i];
+  }
+
+  if (command === "Retire") {
+    console.log(`Pirate ship status: ${pirateShipSum}\nWarship status: ${warshipSum}`);
+  }
+  //console.log(pirateShip, warship, maxHealth, commandArray);
 }
 
 manOWar([

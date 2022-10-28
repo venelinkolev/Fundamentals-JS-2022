@@ -15,7 +15,7 @@ class Laptop {
   turnOff() {
     this.isOn = false;
     this.quality--;
-    this.price = 800 - info.age * 2 + this.quality * 0.5;
+    this.price = 800 - this.info.age * 2 + this.quality * 0.5;
   }
 
   showInfo() {

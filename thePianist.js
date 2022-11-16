@@ -40,6 +40,18 @@ function thePianist(arr) {
         }
         break;
       case 'ChangeKey':
+        if (pieceList.hasOwnProperty(currentCommandArray[1])) {
+          pieceInfo = pieceList[currentCommandArray[1]];
+          pieceInfo.pop();
+          pieceInfo.push(currentCommandArray[2]);
+          console.log(
+            `Changed the key of ${currentCommandArray[1]} to ${currentCommandArray[2]}!`
+          );
+        } else {
+          console.log(
+            `Invalid operation! ${currentCommandArray[1]} does not exist in the collection.`
+          );
+        }
         break;
     }
 
@@ -47,7 +59,17 @@ function thePianist(arr) {
     command = arr.shift();
   }
 
-  //console.log(pieceList);
+  let finalResultArray = Object.entries(pieceList);
+
+  for (let i of finalResultArray) {
+    let piece = i[0];
+    let composer = i[1][0];
+    let key = i[1][1];
+
+    console.log(`${piece} -> Composer: ${composer}, Key: ${key}`);
+  }
+
+  //console.log(finalResultArray);
 }
 
 thePianist([

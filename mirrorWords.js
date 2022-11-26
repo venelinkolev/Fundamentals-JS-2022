@@ -34,6 +34,14 @@ function mirrorWords(arr) {
   } else if (counterPairs > 0 && isMirrorWords) {
     console.log(`${counterPairs} word pairs found!`);
     console.log('The mirror words are:');
+    let resultBuffer = [];
+    for (let key in finalMirrorWords) {
+      resultBuffer.push(`${key} <=> ${finalMirrorWords[key]}`);
+    }
+    console.log(resultBuffer.join(', '));
+  } else if (counterPairs > 0 && !isMirrorWords) {
+    console.log(`${counterPairs} word pairs found!`);
+    console.log('No mirror words!');
   }
 }
 
